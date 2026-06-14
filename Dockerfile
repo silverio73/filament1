@@ -1,13 +1,15 @@
 FROM php:8.4-apache
 
-# Instalar dependências do sistema e extensões PHP necessárias para o Laravel/Postgres
+# Instalar dependências do sistema e extensões PHP necessárias para o Laravel/Postgres/Filament
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
+    libicu-dev \
     zip \
     unzip \
     git \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install pdo pdo_pgsql zip intl
 
 # Ativar módulo rewrite do Apache (essencial para as rotas do Laravel)
 RUN a2enmod rewrite
