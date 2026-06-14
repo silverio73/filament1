@@ -29,7 +29,7 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Executar a instalação das dependências
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-intl
 
 # Expor a porta padrão que a Render usa
 EXPOSE 80
