@@ -35,4 +35,4 @@ RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-in
 EXPOSE 80
 
 # Comando para rodar o Apache e executar as migrações ao iniciar
-CMD php artisan migrate --force && apache2-foreground
+CMD php artisan config:cache && php artisan route:cache && php artisan migrate --force && apache2-foreground
